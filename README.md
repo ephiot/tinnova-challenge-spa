@@ -1,27 +1,13 @@
 # Tinnova Challenge SPA (tinnova-challenge-spa)
 
-Tinnova Challenge SPA
+This SPA (Single Page Application) consumes the Tinnova Challenge PHP (https://github.com/ephiot/tinnova-challenge-php), you need to run the API to SPA work.
 
-## Install the dependencies
+## Run the docker container
+
 ```bash
-yarn
+docker-compose up --build -d
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
+## Access the SPA
 
-### Lint the files
-```bash
-yarn run lint
-```
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://v2.quasar.dev/quasar-cli/quasar-conf-js).
-# tinnova-challenge-spa
+Just access http://localhost:8000
