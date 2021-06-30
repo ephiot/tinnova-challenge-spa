@@ -6,3 +6,10 @@ export function getVehicles ({ commit }) {
       commit('SET_VEHICLES', response.data.data)
     })
 }
+
+export function searchVehicles ({ commit }, terms) {
+  axios.get(`http://localhost/api/veiculos/find?q=${terms}`)
+    .then(response => {
+      commit('SET_VEHICLES', response.data.data)
+    })
+}
