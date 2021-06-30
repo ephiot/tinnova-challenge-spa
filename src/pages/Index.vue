@@ -1,7 +1,10 @@
 <template>
   <q-page class="flex content-start q-pa-xl">
+    <!-- Delete dialog -->
+    <vehicle-delete-confirm ref="deleteDialog" @delete="doDelete" />
+
     <!-- Search -->
-    <search-bar @search="search" />
+    <search-bar @search="search" @callDelete="callDelete" />
 
     <!-- Table -->
     <vehicles-table :rows="vehicles" />
@@ -13,13 +16,15 @@ import { defineComponent } from 'vue'
 import { mapActions, mapGetters } from 'vuex'
 import SearchBar from '../components/SearchBar'
 import VehiclesTable from '../components/VehiclesTable'
+import VehicleDeleteConfirm from '../components/VehicleDeleteConfirm'
 
 export default defineComponent({
   name: 'PageIndex',
 
   components: {
     SearchBar,
-    VehiclesTable
+    VehiclesTable,
+    VehicleDeleteConfirm
   },
 
   data () {
@@ -34,13 +39,21 @@ export default defineComponent({
   },
 
   methods: {
-    ...mapActions('vehicles', ['getVehicles', 'searchVehicles']),
+    ...mapActions('vehicles', ['getVehicles', 'searchVehicles', 'deleteVehicle']),
 
     search (terms) {
       if (terms.length < 1) {
         return this.getVehicles()
       }
       this.searchVehicles(terms)
+    },
+
+    callDelete (row) {
+      this.$refs.deleteDialog.open(row)
+    },
+
+    doDelete (row) {
+      this.deleteVehicle(row.id)
     }
   },
 
