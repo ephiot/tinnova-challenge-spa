@@ -1,13 +1,16 @@
 <template>
   <q-page class="flex content-start q-pa-xl">
+    <!-- Form dialog -->
+    <vehicle-form-modal ref="formModal" />
+
     <!-- Delete dialog -->
     <vehicle-delete-confirm ref="deleteDialog" @delete="doDelete" />
 
     <!-- Search -->
-    <search-bar @search="search" @callDelete="callDelete" />
+    <search-bar @search="search" />
 
     <!-- Table -->
-    <vehicles-table :rows="vehicles" />
+    <vehicles-table :rows="vehicles" @callEdit="callEdit" @callDelete="callDelete" />
   </q-page>
 </template>
 
@@ -17,6 +20,7 @@ import { mapActions, mapGetters } from 'vuex'
 import SearchBar from '../components/SearchBar'
 import VehiclesTable from '../components/VehiclesTable'
 import VehicleDeleteConfirm from '../components/VehicleDeleteConfirm'
+import VehicleFormModal from '../components/VehicleFormModal'
 
 export default defineComponent({
   name: 'PageIndex',
@@ -24,7 +28,8 @@ export default defineComponent({
   components: {
     SearchBar,
     VehiclesTable,
-    VehicleDeleteConfirm
+    VehicleDeleteConfirm,
+    VehicleFormModal
   },
 
   data () {
@@ -50,6 +55,10 @@ export default defineComponent({
 
     callDelete (row) {
       this.$refs.deleteDialog.open(row)
+    },
+
+    callEdit (row) {
+      this.$refs.formModal.open(row)
     },
 
     doDelete (row) {

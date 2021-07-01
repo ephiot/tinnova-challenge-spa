@@ -22,7 +22,7 @@ export default defineComponent({
 
   data () {
     return {
-      row: {vehicle: 'unknown'},
+      row: { vehicle: 'unknown' },
       show: false
     }
   },

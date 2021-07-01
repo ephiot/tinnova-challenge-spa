@@ -31,8 +31,8 @@
         </q-td>
         <q-td class='text-center'>
           <q-btn-group outline>
-            <q-btn outline color="blue" title="Editar" icon-right="edit" />
-            <q-btn outline color="red" title="Excluir" icon-right="delete" />
+            <q-btn outline color="blue" title="Editar" icon-right="edit" @click="callEdit(props.row)" />
+            <q-btn outline color="red" title="Excluir" icon-right="delete" @click="callDelete(props.row)" />
           </q-btn-group>
         </q-td>
       </q-tr>
@@ -121,6 +121,14 @@ export default defineComponent({
   methods: {
     search () {
       this.$emit('search', this.terms)
+    },
+
+    callEdit (row) {
+      this.$emit('callEdit', row)
+    },
+
+    callDelete (row) {
+      this.$emit('callDelete', row)
     }
   }
 })
