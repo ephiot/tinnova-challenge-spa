@@ -13,3 +13,10 @@ export function searchVehicles ({ commit }, terms) {
       commit('SET_VEHICLES', response.data.data)
     })
 }
+
+export function getBrands ({ commit }) {
+  axios.get('http://localhost/api/marcas')
+    .then(response => {
+      commit('SET_BRANDS', response.data.data)
+    })
+}

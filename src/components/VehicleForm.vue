@@ -49,6 +49,7 @@
 
 <script>
 import { defineComponent } from 'vue'
+import { mapGetters } from 'vuex'
 
 export default defineComponent({
   name: 'VehicleForm',
@@ -68,19 +69,23 @@ export default defineComponent({
   },
 
   computed: {
+    ...mapGetters({
+      brands: 'vehicles/brands'
+    }),
+
     options () {
       return [
         {
           label: 'Selecione uma marca',
           value: ''
         }
-      ]
+      ].concat(this.brands)
     }
   },
 
   methods: {
     setData (data) {
-      this.row = data
+      this.row = Object.assign({}, data)
     },
     doSubmit () {
       this.$emit('submit', { edit: this.edit, data: this.row })

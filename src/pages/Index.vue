@@ -44,7 +44,7 @@ export default defineComponent({
   },
 
   methods: {
-    ...mapActions('vehicles', ['getVehicles', 'searchVehicles', 'deleteVehicle']),
+    ...mapActions('vehicles', ['getVehicles', 'searchVehicles', 'deleteVehicle', 'getBrands']),
 
     search (terms) {
       if (terms.length < 1) {
@@ -68,6 +68,7 @@ export default defineComponent({
 
   mounted () {
     this.getVehicles()
+    this.getBrands()
   }
 })
 </script>
